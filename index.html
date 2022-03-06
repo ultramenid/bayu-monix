@@ -1,0 +1,394 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="outpus.css" rel="stylesheet">
+  <title>Bayu & Monix</title>
+  <meta name="description" content="Wedding ceremony "/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+<meta property="og:locale" content="id_ID" />
+<meta property="og:title" content="Bayu & Monix" />
+<meta property="og:description" content="Wedding ceremony" />
+<meta property="og:updated_time" content="2022-02-11T09:52:55+00:00" />
+<meta property="og:image" content="" />
+<meta property="og:image:secure_url" content="" />
+<meta property="og:image:width" content="768" />
+<meta property="og:image:height" content="1151" />
+<meta property="og:image:alt" content="Bayu & Monix" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bayu & Monix" />
+<meta name="twitter:description" content="Wedding ceremony" />
+<meta name="twitter:image" content="" />
+  <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+ 
+</head>
+<body x-data="playandgo()">
+ 
+    <!-- loader -->
+    <div id="loader" >
+        <div id="loader" class=" px-6 fixed w-full min-h-screen z-50 overflow-hidden bg-black mx-auto inset-0 top-0 flex items-center justify-center text-center">
+            <div @click="playandgo().playsound">
+                <h1 class="text-white text-4xl mb-2">Bayu</h1>
+                <h1 class="text-white text-4xl mb-2">&</h1>
+                <h1 class="text-white text-4xl mb-2">Monix</h1>
+                <div class="bg-header py-2 px-2 mt-6 cursor-pointer">
+                    open
+                </div>  
+            </div>
+          </div>
+    </div>
+    <!-- content -->
+    <div id="content">
+        <!-- header pc -->
+        <header class="bg-black shadow-lg sm:block hidden fixed w-full z-40 top-0">
+            <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-bold text-white">B&M</h1>
+                </div>
+                <div class="flex space-x-4 text-white items-center">
+                    <a href="#" class="hover:underline">Home</a>
+                    <a href="#profile" class="hover:underline">Profile</a>
+                    <a href="#gallery" class="hover:underline">Gallery</a>
+                    <a href="#event" class="hover:underline">Wedding Event</a>
+                    <a href="#location" class="hover:underline">Location</a>
+                </div>
+            </div>
+        </header>
+    
+        <!-- header mobile -->
+        <header class="bg-black border border-black  sm:hidden fixed w-full z-40 top-0 flex justify-between items-center px-4 py-2" x-data="{ open: false }">
+            <h1 class="text-4xl font-bold text-white">B&M</h1>
+            <div x-data="{ open: false }" class="bg-green-ndpe z-10 sm:hidden block">
+                <svg @click="open = true" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                  </svg>
+                <div class="fixed w-4/6 h-screen z-50 bg-black inset-y-0 right-0 overflow-y-auto " x-show="open"
+                x-transition:enter="transition ease-in-out duration-150"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in-out duration-150"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                @click.outside="open = false"
+                x-cloak style="display: none !important">
+                <button class="absolute px-4 py-4 focus:outline-none text-white top-0 right-0" @click="open = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 " fill="white" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                </button>
+                    <div class="mt-16 space-y-3 text-right">
+                        <div class=" px-6">
+                            <a href="#"   class="mb-4 px-4 inline-block text-base leading-5 text-gray-300 font-semibold uppercase">Home<a>
+                            <p class="border-b border-gray-300"></p>
+                        </div>
+                        <div class=" px-6">
+                            <a href="#profile"  class="mb-4 px-4 inline-block text-base leading-5 text-gray-300 font-semibold uppercase">Profile<a>
+                            <p class="border-b border-gray-300"></p>
+                        </div>
+                        <div class=" px-6">
+                            <a href="#gallery"  class="mb-4 px-4 inline-block text-base leading-5 text-gray-300 font-semibold uppercase">Gallery<a>
+                            <p class="border-b border-gray-300"></p>
+                        </div>
+                        <div class=" px-6">
+                            <a href="#event"  class="mb-4 px-4 inline-block text-base leading-5 text-gray-300 font-semibold uppercase">Wedding Event<a>
+                            <p class="border-b border-gray-300"></p>
+                        </div>
+                        <div class=" px-6">
+                            <a href="#location" class="mb-4 px-4 inline-block text-base leading-5 text-gray-300 font-semibold uppercase">Location<a>
+                            <p class="border-b border-gray-300"></p>
+                        </div>
+                        <div class="px-6 flex space-x-2 text-gray-300 text-right  bottom-10 fixed z-30">
+                            <a class="text-xs " href="">Web design : @ultramenid</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <!-- slider -->
+        <div class="swiper mySwiper w-full mx-auto relative">
+            <div class="swiper-wrapper max-h-screen " >
+                <div class="swiper-slide flex  text-center  mx-auto   " >
+                    <img src="assets/DSC07234.jpeg" alt="" class="object-cover min-h-screen ">
+                </div>
+                <div class="swiper-slide flex  text-center  mx-auto  ">
+                    <img src="assets/8.jpeg" alt="" class="object-cover min-h-screen ">
+                </div>
+                <div class="swiper-slide flex  text-center  mx-auto  ">
+                    <img src="assets/DSC07240.jpeg" alt="" class="object-cover min-h-screen ">
+                </div>
+            </div>
+        </div>
+        
+            
+        <!-- counter -->
+        <div class="bg-gray-100 py-12" data-aos="fade-up">
+            <div class="max-w-6xl mx-auto px-4 py-8 flex justify-center items-center">
+                <h1 class="text-5xl">28 Maret 2022</h1>
+                
+            </div>
+            <div class="max-w-6xl mx-auto px-12 mt-2 mb-10 flex justify-between items-center">
+          
+                <div class="days-container text-center">
+                  <div class="days sm:text-5xl text-3xl"></div>
+                  <div class="days-label">days</div>
+                </div>
+                
+                <div class="hours-container text-center">
+                  <div class="hours sm:text-5xl text-3xl"></div>
+                  <div class="hours-label">hours</div>
+                </div>
+                
+                <div class="minutes-container text-center">
+                  <div class="minutes sm:text-5xl text-3xl"></div>
+                  <div class="minutes-label">minutes</div>
+                </div>
+                
+                <div class="seconds-container text-center">
+                  <div class="seconds sm:text-5xl text-3xl"></div>
+                  <div class="seconds-label">seconds</div>
+                </div>
+                
+            </div>
+        </div>
+        
+    
+        <!-- pengantar -->
+        <div class="" data-aos="fade-up">
+            <div class="max-w-6xl mx-auto px-4 mt-12 mb-10 text-center">
+                <h1 class=" text-3xl">Assalamu'alaikum Warahmatullahi Wabarakatuh</h1>
+                <div class=" border-black border-b h-4"></div>
+                <div class="max-w-3xl mx-auto font-roboto">
+                    <p class="italic lowercase text-gray-500 mt-10">Maha Suci Allah yang telah menciptakan manusia dengan berpasang-pasangan.</p>
+                    <p class="italic lowercase text-gray-500 mt-2">Dengan memohon Rahmat dan Ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i dalam acara resepsi pernikahan kami.</p>
+                </div>
+            </div>
+        </div>
+    
+    
+        <!-- profile -->
+        <div class="max-w-4xl mx-auto px-4 mt-12 mb-10 text-center" id="profile">
+            <div class="flex justify-between mb-12" data-aos="fade-up">
+                <div class="flex items-center">
+                    <div class="w-6/12 relative">
+                        <img src="assets/monix.jpeg" alt=""  class="sm:w-6/12 w-full" >
+                    </div>
+                    <div class="w-6/12">
+                        <h1 class="text-4xl mb-4">Monix Agustina</h1>
+                        <p>Putri Kedua</p>
+                        <p>Dari : Bp. Sujarwo &  Ibu: Astuti</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between mb-6 " data-aos="fade-up">
+                <div class="flex items-center">
+                    
+                    <div class="w-6/12  justify-start">
+                        <h1 class="text-4xl mb-4">Monix Agustina</h1>
+                        <p>Putri Kedua</p>
+                        <p>Dari : Bp. Sujarwo &  Ibu: Astuti</p>
+                    </div>
+                    <div class="w-6/12 justify-end flex">
+                        <img src="assets/bayu.jpeg" alt=""  class="sm:w-6/12 w-full" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Gallery -->
+        <div class="bg-black py-10" id="gallery">
+            <div class="max-w-6xl mx-auto px-4 mt-12 mb-10 text-center">
+                <h1 class="text-white text-4xl mb-10">Our Gallery</h1>
+                <div class="gg-container">
+                    <div class="gg-box">
+                      <img data-aos="fade-up" src="assets/bayek/1.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/2.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/12.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/3.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/4.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/5.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/6.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/7.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/9.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/11.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/13.jpeg">
+                      <img data-aos="fade-up" src="assets/bayek/14.jpeg">
+                      
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <!-- wedding event -->
+        <div class="max-w-4xl mx-auto px-4 mt-12 mb-12 " id="event">
+            <h1 class="text-black text-center text-4xl mb-10">Wedding Event</h1>
+            <p class="italic lowercase  font-roboto text-center text-gray-500 mt-10">“Pernikahan adalah ibadah dan setiap ibadah bermuara pada cinta-Nya sebagai tujuan. Sudah sewajarnya setiap upaya meraih cinta-Nya dilakukan dengan sukacita.”</p>
+
+            <div class="flex sm:flex-row flex-col items-center mt-6 bg-header ">
+               <div class="sm:w-6/12 w-full ">
+                    <img class="object-none object-center" src="https://groovepublic.com/wp-content/uploads/2021/10/WhatsApp-Image-2021-10-06-at-16.14.23-700x700.jpeg" alt="">
+               </div>
+               <div class="sm:w-6/12 w-full text-white text-center  mb-6">
+                    <h1 class="text-3xl">Akad Nikah</h1>
+                    <h5>Jumat</h5>
+                    <h2 class="text-xl">28.03.2022</h2>
+                    <p class="text-xl">09.00 WIB - Selesai</p>
+                    <p class="text-sm font-roboto mt-2">Lokasi: Jalan Rahasia Umum dan Disahkan Oleh Bapak Presiden</p>
+                </div>
+            </div>
+            <div class="flex  sm:flex-row flex-col items-center mt-6 bg-header">
+                <div class="sm:w-6/12 w-full text-white text-center mb-6">
+                    <h1 class="text-3xl">Akad Nikah</h1>
+                    <h5>Jumat</h5>
+                    <h2 class="text-xl">28.03.2022</h2>
+                    <p class="text-xl">09.00 WIB - Selesai</p>
+                    <p class="text-sm font-roboto mt-2">Lokasi: Jalan Rahasia Umum dan Disahkan Oleh Bapak Presiden</p>
+                </div>
+                <div class="sm:w-6/12 w-full">
+                    <img class="object-none object-center" src="https://groovepublic.com/wp-content/uploads/2021/10/WhatsApp-Image-2021-10-06-at-16.14.22-700x700.jpeg" alt="">
+                 </div>
+             </div>
+        </div>
+
+        <!-- map -->
+        <div class="max-w-4xl mx-auto px-4 mt-12 mb-12  " id="location">
+            <h1 class="text-black text-center text-4xl mb-10">Location</h1>
+            <span class="border-b border-black h-2"></span>
+            <div id="map" class="h-screen max-w-7xl px-6 mx-auto text-center z-10">
+
+            </div>
+        </div>
+
+        
+    </div>
+    
+    <!-- pulse down animation -->
+    <div x-data="{ open: true }" @scroll.window="open = (window.pageYOffset > 50) ? false : true" >
+        <div class="fixed z-20 inset-x-0 bottom-5 cursor-pointer " x-show="open" x-transition x-cloak style="display: none !important" >
+            <div class="sm:px-4 px-2 sm:py-4 py-2  flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+            </div>
+        </div>
+    </div>
+
+     <!-- audio controller down animation -->
+    <div class="fixed z-30 bottom-5 right-6 cursor-pointer "  x-data="{ open: false }" @scroll.window="open = (window.pageYOffset > 50) ? true : false" >
+        <div x-show="open">
+            <div id="play" class="bg-header py-4 px-4 " @click="playandgo().mutesound" >
+                <svg @click="playandgo().mutesound" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+            </div>
+            <div id="mute" class="bg-header py-4 px-4" @click="playandgo().resumesound">
+                <svg @click="playandgo().resumesound" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clip-rule="evenodd" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                  </svg>
+            </div>
+        </div> 
+    </div>
+    <audio loop id="sound">
+        <source src="assets/song.mp3" />     
+    </audio>
+    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    
+    <script>
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+            .openPopup();
+        
+
+
+        document.getElementById('mute').style.display="none";
+        function playandgo(){
+            return {
+                playsound(){ 
+                    document.getElementById('sound').play();
+                    document.getElementById('loader').style.display="none";
+                    document.getElementById('loader').style.transition="visibility 0s 2s, opacity 2s linear;";
+                    document.getElementById('loader').style.display="ease-out";
+                    document.getElementById('content').style.display="block";
+                },
+                mutesound(){
+                    document.getElementById('sound').pause();
+                    document.getElementById('play').style.display="none";
+                    document.getElementById('mute').style.display="block";
+                },
+                resumesound(){
+                    document.getElementById('sound').play();
+                    document.getElementById('play').style.display="block";
+                    document.getElementById('mute').style.display="none";
+                }
+            }
+        }
+            AOS.init();
+            const finaleDate = new Date("March 28, 2022 09:00:00").getTime();
+    
+            const timer = () =>{
+                const now = new Date().getTime();
+                let diff = finaleDate - now;
+                if(diff < 0){
+                    document.querySelector('.alert').style.display = 'block';
+                    document.querySelector('.container').style.display = 'none';
+                }
+            
+                let days = Math.floor(diff / (1000*60*60*24));
+                let hours = Math.floor(diff % (1000*60*60*24) / (1000*60*60));
+                let minutes = Math.floor(diff % (1000*60*60)/ (1000*60));
+                let seconds = Math.floor(diff % (1000*60) / 1000);
+            
+                days <= 99 ? days = `${days}` : days;
+                days <= 9 ? days = `00${days}` : days;
+                hours <= 9 ? hours = `0${hours}` : hours;
+                minutes <= 9 ? minutes = `0${minutes}` : minutes;
+                seconds <= 9 ? seconds = `0${seconds}` : seconds;   
+            
+                document.querySelector('.days').textContent = days;
+                document.querySelector('.hours').textContent = hours;
+                document.querySelector('.minutes').textContent = minutes;
+                document.querySelector('.seconds').textContent = seconds;
+            
+            }
+            timer();
+            setInterval(timer,1000);
+            
+            new Swiper('.mySwiper', {
+                direction: 'horizontal',
+                loop: true,
+                slidesPerView: 1,
+                centeredSlides: true,
+                
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  },
+               
+            });
+        
+    </script>
+   
+</body>
+</html>
